@@ -7,4 +7,6 @@ import java.util.List;
 public interface IServiceB3 {
   public List<B3> getAllB3();
 public void saveB3(B3 b3);
+public B3 getB3(Long id);
+
 }

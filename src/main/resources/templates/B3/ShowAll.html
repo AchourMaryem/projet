@@ -52,8 +52,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="b3:${b3}"></tr>
+                    <tr th:each="b3:${b3}">
+                        <td th:text="${b3.id}"></td>
+                        <td th:text="${b3.cin}" ></td>
+                        <td th:text="${b3.nom}"></td>
+                        <td th:text="${b3.prenom}"></td>
 
+                        <td>
+                            <a th:href="@{/show/{id}(id=${b3.id})}" class="btn btn-info">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a th:href="@{/edit/{id}(id=${b3.id})}" class="btn btn-warning">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+
+
+
+                    </tr>
 
 
                     </tbody>
