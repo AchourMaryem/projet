@@ -5,5 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface B3Repository extends JpaRepository <B3,Long> {
 
-
 }

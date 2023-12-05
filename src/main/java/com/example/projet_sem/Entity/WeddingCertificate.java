@@ -22,7 +22,5 @@ public class WeddingCertificate extends Document {
     private String Nom_mere;
     private String Lieu;
 
-    @ManyToOne
-    @JoinColumn(name = "id_docs", nullable = false)
-    private Document document;
+
 }

@@ -13,12 +13,11 @@ import lombok.NoArgsConstructor;
 public class B3 extends Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
-    private String Nom_Pere;
+    private String nompere;
     private String Remarque;
 
-    @ManyToOne
-    @JoinColumn(name = "id_docs", nullable = false)
-    private Document document;
+
+
+
 }

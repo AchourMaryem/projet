@@ -22,9 +22,7 @@ public class BirthCertificate extends Document {
     private String Nationnalite;
     private String Etat;
     private String Observation;
-    @ManyToOne
-    @JoinColumn(name = "id_docs", nullable = false)
-    private Document document;
+
 
 
 }

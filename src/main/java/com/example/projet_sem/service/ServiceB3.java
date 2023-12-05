@@ -17,5 +17,6 @@ public class ServiceB3 implements IServiceB3 {
         return b3repository.findAll();
 
     }
-
+@Override
+    public void saveB3(B3 b3){b3repository.save(b3);}
 }

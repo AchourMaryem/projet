@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link rel="stylesheet" href="/css/styles.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>B3</title>
 </head>
 <body>
+<div class="container">
+    <div class="card m-5 p-2">
+        <h2>Ad B3 </h2>
+
+        <div class="card-header">
+            <div class="card-body">
+                <form th:action="@{/save}" th:objectif="${b3}"  method="post">
+                    <div class="form-group">
+                        <label for="cin">CIN</label>
+                        <input type="text" name="cin" class="form-control" id="cin" th:value="${b3?.cin}">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateCin">Date CIN</label>
+                        <input type="date" name="dateCin" class="form-control" id="dateCin" th:value="${b3?.dateCin}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nom">Nom</label>
+                        <input type="text" name="nom" class="form-control" id="nom" th:value="${b3?.nom}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prenom">Prenom</label>
+                        <input type="text" name="prenom" class="form-control" id="prenom" th:value="${b3?.prenom}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Date of birth</label>
+                        <input type="date" name="dob" class="form-control" id="dob" th:value="${b3?.dob}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nompere">Nom Pere</label>
+                        <input type="text" name="nompere" class="form-control" id="nompere" th:value="${b3?.nompere}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="remarque">Remarque</label>
+                        <textarea name="remarque" class="form-control" id="remarque" rows="5" th:text="${b3?.remarque}"></textarea>
+                    </div>
+
+
+                    <br>
+                    <input type="hidden" name="id" th:value="${b3.id}">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>
