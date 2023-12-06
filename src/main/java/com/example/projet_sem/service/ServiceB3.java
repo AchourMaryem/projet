@@ -109,4 +109,12 @@ public class ServiceB3 implements IServiceB3 {
         return infoParagraph;
     }
 
+
+
+
+    @Override
+    public List<B3> getB3BYCIN(Long cin) {
+        return b3repository.findByCin(cin);
+    }
+
 }

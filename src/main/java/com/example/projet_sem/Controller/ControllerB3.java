@@ -74,4 +74,15 @@ public class ControllerB3 {
 
         return new ResponseEntity<>(pdfContent, headers, HttpStatus.OK);
     }
+
+
+    @PostMapping("/search")
+    public String getB3BYCIN(@RequestParam Long cin, Model m){
+        List<B3> searchResult=serviceB3.getB3BYCIN(cin);
+        m.addAttribute("searchResult",searchResult);
+        return "/B3/Search";
+    }
+
+
+
 }
