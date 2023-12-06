@@ -9,4 +9,7 @@ public interface IServiceB3 {
 public void saveB3(B3 b3);
 public B3 getB3(Long id);
 
+void updateB3(Long id, B3 updatedB3);
+void deleteB3(Long id);
+byte[] generatePDF(Long id);
 }

@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-11">
                 <table class="table table-striped">
                     <thead class="text-success bg-black">
                     <tr>
@@ -65,8 +65,15 @@
                             <a th:href="@{/edit/{id}(id=${b3.id})}" class="btn btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
+                            <form th:action="@{/delete/{id}(id=${b3.id})}" method="post" style="display: inline-block;">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
+                            <a th:href="@{/print-pdf/{id}(id=${b3.id} + '')}" class="btn btn-dark">
+                                <i class="fas fa-file-pdf"></i>
+                            </a>
                         </td>
-
 
 
                     </tr>
