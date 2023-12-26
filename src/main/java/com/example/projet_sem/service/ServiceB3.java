@@ -16,7 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class ServiceB3 implements IServiceB3 {
 
-    private final B3Repository b3repository;
+    public B3Repository b3repository;
 
     @Override
     public List<B3> getAllB3() {
@@ -24,8 +24,7 @@ public class ServiceB3 implements IServiceB3 {
     }
 
     @Override
-    public void saveB3(B3 b3) {
-        b3repository.save(b3);
+    public void saveB3(B3 b3) {b3repository.save(b3);
     }
 
     @Override
@@ -46,6 +45,7 @@ public class ServiceB3 implements IServiceB3 {
      b3repository.deleteById(id);
 }
 
+/*  mta3 pdf w bach  tzid  trak7oou  */
 
     public byte[] generatePDF(Long id) {
         B3 b3 = getB3(id);
@@ -62,7 +62,7 @@ public class ServiceB3 implements IServiceB3 {
             Font valueFont = FontFactory.getFont(FontFactory.HELVETICA, 12);
 
             // Titre
-            Paragraph title = new Paragraph("Ministère de l'Intérieur", titleFont);
+            Paragraph title = new Paragraph("louzara loula", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
             document.add(title);
 
@@ -113,7 +113,7 @@ public class ServiceB3 implements IServiceB3 {
 
 
     @Override
-    public List<B3> getB3BYCIN(Long cin) {
+    public List<B3> getB3BYCIN(String cin) {
         return b3repository.findByCin(cin);
     }
 

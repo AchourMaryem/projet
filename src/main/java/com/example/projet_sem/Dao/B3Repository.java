@@ -7,4 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface B3Repository extends JpaRepository <B3,Long> {
-    List<B3> findByCin(Long cin);}
+    List<B3> findByCin(String cin);
+
+}

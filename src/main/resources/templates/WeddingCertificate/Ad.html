@@ -1,10 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link rel="stylesheet" href="/css/styles.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Wedding Certificate</title>
 </head>
 <body>
+<div class="container">
+    <div class="card m-5 p-2">
+        <h2>Ad Wedding Certificate </h2>
+
+        <div class="card-header">
+            <div class="card-body">
+                <form th:action="@{/wedding/save}" th:objectif="${weddingCertificate}"  method="post">
+                    <div class="form-group">
+                        <label for="cin">CIN</label>
+                        <input type="text" name="cin" class="form-control" id="cin" th:value="${weddingCertificate?.cin}">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateCin">Date CIN</label>
+                        <input type="date" name="dateCin" class="form-control" id="dateCin" th:value="${weddingCertificate?.dateCin}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nom">Nom</label>
+                        <input type="text" name="nom" class="form-control" id="nom" th:value="${weddingCertificate?.nom}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prenom">Prenom</label>
+                        <input type="text" name="prenom" class="form-control" id="prenom" th:value="${weddingCertificate?.prenom}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">Date of birth</label>
+                        <input type="date" name="dob" class="form-control" id="dob" th:value="${weddingCertificate?.dob}">
+                    </div>
+                    <div class="form-group">
+                        <label for="nommere">Nom Mere</label>
+                        <input type="text" name="nommere" class="form-control" id="nommere" th:value="${weddingCertificate?.nommere}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nompere">Nom Pere</label>
+                        <input type="text" name="nompere" class="form-control" id="nompere" th:value="${weddingCertificate?.nompere}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nomcouple">Nom Couple</label>
+                        <input type="text" name="nomcouple" class="form-control" id="nomcouple" th:value="${weddingCertificate?.nomcouple}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prenomcouple">Prenom Couple</label>
+                        <input type="text" name="prenomcouple" class="form-control" id="prenomcouple" th:value="${weddingCertificate?.prenomcouple}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sexe">Sexe</label>
+                        <select name="sexe" class="form-control" id="sexe" th:value="${weddingCertificate?.sexe}">
+                            <option value="Male">Homme</option>
+                            <option value="Female">Femme</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="lieu">Lieu</label>
+                        <select name="lieu" class="form-control" id="lieu" th:value="${weddingCertificate?.lieu}">
+                            <option value="Tunis">Tunis</option>
+                            <option value="Sousse">Sousse</option>
+                        </select>
+                    </div>
+
+
+
+
+
+                    <br>
+                    <input type="hidden" name="id" th:value="${weddingCertificate.id}">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>

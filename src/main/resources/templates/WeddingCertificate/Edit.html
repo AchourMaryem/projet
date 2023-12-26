@@ -1,10 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit WeddingCertificate </title>
 </head>
 <body>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2>Edit WeddingCertificate</h2>
+        </div>
+        <div class="card-body">
+            <form th:action="@{/wedding/update/{id}(id=${weddingCertificate.id})}" method="post">
+                <div class="mb-3">
+                    <label for="cin" class="form-label">Cin:</label>
+                    <input type="text" class="form-control" id="cin" name="cin" th:value="${weddingCertificate.cin}" required disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="date_cin" class="form-label">Date Cin:</label>
+                    <input type="text" class="form-control" id="date_cin" name="date_cin" th:value="${weddingCertificate.dateCin}" required disabled>
+                </div>
 
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom:</label>
+                    <input type="text" class="form-control" id="nom" name="nom" th:value="${weddingCertificate.nom}" required disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label for="prenom" class="form-label">Prenom:</label>
+                    <input type="text" class="form-control" id="prenom" name="prenom" th:value="${weddingCertificate.prenom}" required disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="dob" class="form-label">Date of birth:</label>
+                    <input type="text" class="form-control" id="dob" name="dob" th:value="${weddingCertificate.dob}" required disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="nommere" class="form-label">Nom Mere</label>
+                    <input type="text" class="form-control" id="nommere" name="nommere" th:value="${weddingCertificate.nommere}" required disabled>
+                </div>
+                <div class="mb-3">
+                    <label for="nompere" class="form-label">Nom pere</label>
+                    <input type="text" class="form-control" id="nompere" name="nompere" th:value="${weddingCertificate.nompere}" required disabled>
+                </div>
+
+                <div class="mb-3">
+                    <label for="nomcouple" class="form-label">Nom Couple</label>
+                    <input type="text" class="form-control" id="nomcouple" name="nomcouple" th:value="${weddingCertificate.nomcouple}" required >
+                </div>
+                <div class="mb-3">
+                    <label for="prenomcouple" class="form-label">Prenom Couple</label>
+                    <input type="text" class="form-control" id="prenomcouple" name="prenomcouple" th:value="${weddingCertificate.prenomcouple}" required >
+                </div>
+
+
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

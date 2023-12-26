@@ -15,11 +15,11 @@ public class WeddingCertificate extends Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
-    private String NomCouple;
-    private String PrenomCouple;
+    private String nomcouple;
+    private String prenomcouple;
     private String Sexe;
-    private String Nom_pere;
-    private String Nom_mere;
+    private String nompere;
+    private String nommere;
     private String Lieu;
 
 

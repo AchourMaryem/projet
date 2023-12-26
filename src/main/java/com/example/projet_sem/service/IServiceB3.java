@@ -13,5 +13,5 @@ void updateB3(Long id, B3 updatedB3);
 void deleteB3(Long id);
 byte[] generatePDF(Long id);
 
-  List<B3> getB3BYCIN(Long cin);
+  List<B3> getB3BYCIN(String cin);
 }

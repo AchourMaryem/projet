@@ -16,7 +16,7 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long cin;
+    private String cin;
     private String nom;
     private String prenom;
 
