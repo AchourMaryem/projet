@@ -3,6 +3,7 @@ package com.example.projet_sem.Controller;
 import com.example.projet_sem.Entity.B3;
 import com.example.projet_sem.Entity.WeddingCertificate;
 import com.example.projet_sem.service.ServiceDocument;
+import com.example.projet_sem.service.ServiceQrcode;
 import com.example.projet_sem.service.ServiceWeddingCertificate;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +23,7 @@ import java.util.List;
 public class ControllerWeddingCertificate {
     ServiceWeddingCertificate serviceWeddingCertificate;
     ServiceDocument serviceDocument;
+    ServiceQrcode qrservice;
     @GetMapping("/")
     public String getAllWedd(Model m){
         List<WeddingCertificate> b=serviceWeddingCertificate.getAllWedd();
@@ -38,6 +40,7 @@ public class ControllerWeddingCertificate {
     public String saveWed(@ModelAttribute WeddingCertificate weddingCertificate, Model m){
 
         serviceWeddingCertificate.saveWed(weddingCertificate);
+        qrservice.generateQrcode(weddingCertificate);
         return "redirect:/wedding/";
     }
 
@@ -74,6 +77,11 @@ public class ControllerWeddingCertificate {
         return new ResponseEntity<>(pdfContent, headers, HttpStatus.OK);
     }
 
-
+    @PostMapping("/search")
+    public String getWedBYCIN(@RequestParam String cin, Model m){
+        List<WeddingCertificate> searchResult=serviceWeddingCertificate.getWedBYCIN(cin);
+        m.addAttribute("searchResult",searchResult);
+        return "WeddingCertificate/Search";
+    }
 }
 

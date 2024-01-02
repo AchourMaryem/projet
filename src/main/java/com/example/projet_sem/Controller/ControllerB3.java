@@ -5,9 +5,13 @@ import com.example.projet_sem.Entity.Document;
 import com.example.projet_sem.service.ServiceB3;
 import com.example.projet_sem.service.ServiceDocument;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.example.projet_sem.service.ServiceQrcode;
 
 import java.util.List;
 //pdf
@@ -25,7 +29,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ControllerB3 {
     ServiceB3 serviceB3;
     ServiceDocument serviceDocument;
+    ServiceQrcode qrservice;
     @GetMapping("/")
+
     public String getAllB3(Model m)
     { List<B3> b=serviceB3.getAllB3();
         m.addAttribute("b3",b);
@@ -37,6 +43,8 @@ public class ControllerB3 {
 
       //  System.out.println(b3);
         serviceB3.saveB3(b3);
+        qrservice.generateQrcode(b3);
+
         return "redirect:/papier3/";
     }
 
@@ -79,12 +87,7 @@ public class ControllerB3 {
     }
 
 
-    @PostMapping("/search")
-    public String getB3BYCIN(@RequestParam String cin, Model m){
-        List<B3> searchResult=serviceB3.getB3BYCIN(cin);
-        m.addAttribute("searchResult",searchResult);
-        return "B3/Search";
-    }
+
 
 
 

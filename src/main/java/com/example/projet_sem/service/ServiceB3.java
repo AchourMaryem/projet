@@ -8,7 +8,12 @@ import org.springframework.stereotype.Service;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.ByteArrayOutputStream;
 import com.itextpdf.text.pdf.draw.LineSeparator;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,9 +70,14 @@ public class ServiceB3 implements IServiceB3 {
             Paragraph title = new Paragraph("louzara loula", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
             document.add(title);
-
+            Image image = Image.getInstance("https://api.qrserver.com/v1/create-qr-code/?size=350x350&data="+b3.getQrcode().getHash());
+            float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
+                    - document.rightMargin()) / image.getWidth()) * 20;
+            image.scalePercent(scaler);
+            image.setAlignment(Element.ALIGN_CENTER);
             // Espacement
             document.add(Chunk.NEWLINE);
+
 
             // Sous-titre "B3"
             Paragraph subtitle = new Paragraph("B3", titleFont);
@@ -85,6 +95,7 @@ public class ServiceB3 implements IServiceB3 {
             document.add(createInfoParagraph("Prenom", b3.getPrenom(), labelFont, valueFont));
             document.add(createInfoParagraph("Remarque", b3.getRemarque(), labelFont, valueFont));
 
+
             // Ligne de séparation
             document.add(new Chunk(new LineSeparator()));
 
@@ -92,9 +103,13 @@ public class ServiceB3 implements IServiceB3 {
             Paragraph generationDate = new Paragraph("Date de génération: " + java.time.LocalDate.now(), labelFont);
             generationDate.setAlignment(Element.ALIGN_RIGHT);
             document.add(generationDate);
-
+            document.add(image);
         } catch (DocumentException e) {
             e.printStackTrace();
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         } finally {
             document.close();
         }
@@ -110,11 +125,9 @@ public class ServiceB3 implements IServiceB3 {
     }
 
 
-
-
     @Override
-    public List<B3> getB3BYCIN(String cin) {
-        return b3repository.findByCin(cin);
+    public Page<B3> getB3BYCIN(String cin, Pageable p) {
+        return b3repository.findByCin(cin, p);
     }
 
 }

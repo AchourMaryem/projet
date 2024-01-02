@@ -1,6 +1,5 @@
 package com.example.projet_sem.service;
 
-import com.example.projet_sem.Entity.B3;
 import com.example.projet_sem.Entity.WeddingCertificate;
 
 import java.util.List;
@@ -12,6 +11,7 @@ public interface IServiceWeddingCertificate {
     void updateWedding(Long id, WeddingCertificate updatedWedding);
     void deleteWedding(Long id);
     byte[] generatePDF(Long id);
+    List<WeddingCertificate> getWedBYCIN(String cin);
 
 }
 

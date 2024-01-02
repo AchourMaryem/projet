@@ -12,6 +12,7 @@ public class ControllerBirthCertificate {
     @Autowired
     BirthCertificateRepository birthCertificateRepository;
 
+
     @PostMapping("/bc")
     public BirthCertificate addbc(@RequestBody BirthCertificate birth){
         birthCertificateRepository.save(birth);

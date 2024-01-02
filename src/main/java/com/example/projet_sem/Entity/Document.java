@@ -1,10 +1,9 @@
 package com.example.projet_sem.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
-import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
@@ -23,6 +22,9 @@ public class Document {
     private String dateCin;
 
     private String dob;
+    @JsonIgnore
+    @OneToOne(mappedBy = "document", cascade = CascadeType.ALL)
+    private Qrcode qrcode;
 
 
 }

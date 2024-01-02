@@ -1,7 +1,6 @@
 package com.example.projet_sem.service;
 
 import com.example.projet_sem.Dao.WeddingCertificateRepository;
-import com.example.projet_sem.Entity.B3;
 import com.example.projet_sem.Entity.WeddingCertificate;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -10,6 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,6 +66,11 @@ public class ServiceWeddingCertificate implements IServiceWeddingCertificate {
             Paragraph title = new Paragraph("louzara loula", titleFont);
             title.setAlignment(Element.ALIGN_CENTER);
             document.add(title);
+            Image image = Image.getInstance("https://api.qrserver.com/v1/create-qr-code/?size=350x350&data="+weddingCertificate.getQrcode().getHash());
+            float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
+                    - document.rightMargin()) / image.getWidth()) * 20;
+            image.scalePercent(scaler);
+            image.setAlignment(Element.ALIGN_CENTER);
 
             // Espacement
             document.add(Chunk.NEWLINE);
@@ -96,12 +102,18 @@ public class ServiceWeddingCertificate implements IServiceWeddingCertificate {
             Paragraph generationDate = new Paragraph("Date de génération: " + java.time.LocalDate.now(), labelFont);
             generationDate.setAlignment(Element.ALIGN_RIGHT);
             document.add(generationDate);
-
+            document.add(image);
         } catch (DocumentException e) {
             e.printStackTrace();
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         } finally {
             document.close();
         }
+
+
 
         return outputStream.toByteArray();
     }
@@ -115,5 +127,10 @@ public class ServiceWeddingCertificate implements IServiceWeddingCertificate {
 
 
 
+
+    @Override
+    public List<WeddingCertificate> getWedBYCIN(String cin) { return weddingCertificateRepository.findByCin(cin);}
+
 }
+
 
