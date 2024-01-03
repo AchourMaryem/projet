@@ -34,7 +34,6 @@
 
                 <dt class="col-sm-3">CIN:</dt>
                 <dd class="col-sm-9" th:text="${b3.cin}"></dd>
-
                 <dt class="col-sm-3">Nom:</dt>
                 <dd class="col-sm-9" th:text="${b3.nom}"></dd>
 
@@ -52,7 +51,10 @@
 
                 <dt class="col-sm-3">Remarque</dt>
                 <dd class="col-sm-9" th:text="${b3.remarque}"></dd>
-
+                <dt class="col-sm-3">Photo:</dt>
+              <dd class="col-sm-9">
+                    <img th:if="${b3.photo != null}" th:src="${'/photos/' + b3.photo}" width="200" height="150" alt="Photo">
+              </dd>
             </dl>
         </div>
         <div class="card-footer text-end">

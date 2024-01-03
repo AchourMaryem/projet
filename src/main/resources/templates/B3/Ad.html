@@ -15,7 +15,7 @@
 
         <div class="card-header">
             <div class="card-body">
-                <form th:action="@{/papier3/save}" th:objectif="${b3}"  method="post">
+                <form th:action="@{/papier3/save}"   method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="cin">CIN</label>
                         <input type="text" name="cin" class="form-control" id="cin" th:value="${b3?.cin}">
@@ -48,6 +48,10 @@
                     <div class="form-group">
                         <label for="remarque">Remarque</label>
                         <textarea name="remarque" class="form-control" id="remarque" rows="5" th:text="${b3?.remarque}"></textarea>
+                    </div>
+                    <div>
+                        Add image:
+                        <input type="file" accept="image/*"  name="image">
                     </div>
 
 

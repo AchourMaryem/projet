@@ -16,7 +16,7 @@ public class B3 extends Document {
     private Long id;
     private String nompere;
     private String Remarque;
-
+    private String photo;
 
 
 

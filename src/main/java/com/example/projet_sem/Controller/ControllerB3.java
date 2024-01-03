@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.example.projet_sem.service.ServiceQrcode;
-
+import java.io.IOException;
 import java.util.List;
 //pdf
 import org.springframework.http.HttpStatus;
@@ -21,6 +21,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @AllArgsConstructor
@@ -31,22 +33,48 @@ public class ControllerB3 {
     ServiceDocument serviceDocument;
     ServiceQrcode qrservice;
     @GetMapping("/")
-
     public String getAllB3(Model m)
     { List<B3> b=serviceB3.getAllB3();
         m.addAttribute("b3",b);
         return "/B3/ShowAll";
     }
 
+  /**  public String getAllB3(Model m,
+                           @RequestParam(name = "mc",defaultValue = "")String mc,
+                           @RequestParam(name = "mc",defaultValue = "")String mc1,
+                           @RequestParam(name = "page", defaultValue = "0") int page,
+                           @RequestParam(name = "size", defaultValue = "10") int size
+    )
+
+
+
+    {
+
+        Page<B3> b=serviceB3.getB3ByMc(mc, mc1,PageRequest.of(page, size));
+        m.addAttribute("mc",mc);
+        m.addAttribute("mc1",mc1);
+        m.addAttribute("b3", b.getContent());
+        m.addAttribute("pages", new int[b.getTotalPages()]);
+        m.addAttribute("currentpage", b.getNumber());
+
+        return "/B3/ShowAll";
+    }*/
+
+
+
+
+
+
     @PostMapping("/save")
-    public String saveB3(@ModelAttribute B3 b3, Model m){
+    public String saveB3(@ModelAttribute B3 b3, Model m, @RequestParam ("image") MultipartFile mf) throws IOException {
 
       //  System.out.println(b3);
-        serviceB3.saveB3(b3);
-        qrservice.generateQrcode(b3);
+        serviceB3.saveB3(b3,mf);
+       qrservice.generateQrcode(b3);
 
         return "redirect:/papier3/";
     }
+
 
     @GetMapping("/Ad")
     public String redirection(Model m){

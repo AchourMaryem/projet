@@ -9,5 +9,5 @@ import java.util.Optional;
 
 public interface B3Repository extends JpaRepository <B3,Long> {
     public Page <B3> findByCin(String cin,Pageable p) ;
-
+public  Page<B3> findByNomAndPrenom(String mc, String mc1, Pageable p);
 }

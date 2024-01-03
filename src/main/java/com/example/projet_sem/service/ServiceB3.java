@@ -4,16 +4,23 @@ import com.example.projet_sem.Dao.B3Repository;
 import com.example.projet_sem.Entity.B3;
 import com.itextpdf.text.*;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.ByteArrayOutputStream;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,9 +36,17 @@ public class ServiceB3 implements IServiceB3 {
     }
 
     @Override
-    public void saveB3(B3 b3) {b3repository.save(b3);
-    }
+    public void saveB3(B3 b3, MultipartFile mf) throws IOException {
+        if (!mf.isEmpty())
+        {
 
+            String image=saveImage(mf);
+            b3.setPhoto(image);
+        }
+
+        b3repository.save(b3);
+
+    }
     @Override
     public B3 getB3(Long id) {
         return b3repository.findById(id).orElse(null);
@@ -126,8 +141,23 @@ public class ServiceB3 implements IServiceB3 {
 
 
     @Override
-    public Page<B3> getB3BYCIN(String cin, Pageable p) {
+    public Page<B3> findByCin(String cin, Pageable p) {
         return b3repository.findByCin(cin, p);
     }
 
+    @Override
+    public Page<B3> getB3ByMc(String mc, String mc1, Pageable p){
+            return b3repository.findByNomAndPrenom(mc, mc1, p);
+    }
+
+    public String saveImage(MultipartFile mf) throws IOException {
+        String photoname=mf.getOriginalFilename();
+        String tab[]=photoname.split("\\.");
+        String newName=tab[0]+System.currentTimeMillis()+"."+tab[1];
+        File f = new ClassPathResource("static/photos").getFile(); //target
+        String path= f.getAbsolutePath();
+        Path b3= Paths.get(path,newName);
+        Files.write(b3,mf.getBytes());
+        return newName;
+    }
 }
