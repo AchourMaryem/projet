@@ -18,5 +18,6 @@ public class ControllerBirthCertificate {
         birthCertificateRepository.save(birth);
         return birth;
 
+
     }
 }
