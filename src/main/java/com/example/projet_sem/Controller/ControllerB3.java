@@ -4,12 +4,14 @@ import com.example.projet_sem.Entity.B3;
 import com.example.projet_sem.Entity.Document;
 import com.example.projet_sem.service.ServiceB3;
 import com.example.projet_sem.service.ServiceDocument;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import com.example.projet_sem.service.ServiceQrcode;
 import java.io.IOException;
@@ -23,6 +25,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.naming.Binding;
 
 @Controller
 @AllArgsConstructor
@@ -66,7 +70,11 @@ public class ControllerB3 {
 
 
     @PostMapping("/save")
-    public String saveB3(@ModelAttribute B3 b3, Model m, @RequestParam ("image") MultipartFile mf) throws IOException {
+    public String saveB3(@Valid B3 b3, BindingResult bindingResult ,Model m,
+                         @RequestParam ("image") MultipartFile mf) throws IOException {
+        if (bindingResult.hasErrors()){
+            return "redirect:/papier3/";
+        }
 
       //  System.out.println(b3);
         serviceB3.saveB3(b3,mf);
@@ -81,6 +89,11 @@ public class ControllerB3 {
         m.addAttribute("b3",new B3());
         return "/B3/Ad";
 }
+
+
+
+
+
     @GetMapping("/show/{id}")
     public String showB3(@PathVariable("id") Long id, Model m) {
         B3 b3 = serviceB3.getB3(id);
