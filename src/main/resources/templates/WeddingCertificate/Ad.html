@@ -84,7 +84,7 @@
                             <option value="Male" th:selected="${weddingCertificate?.sexe == 'Male'}">Homme</option>
                             <option value="Female" th:selected="${weddingCertificate?.sexe == 'Female'}">Femme</option> <!-- Ajout de la guillemet manquante -->
                         </select>
-                        <span class="text-danger" th:if="${#fields.hasErrors('weddingCertificate.sexe')}" th:errors="${weddingCertificate?.sexe}"></span>
+                        <span class="text-danger" th:errors="${weddingCertificate.sexe}"></span>
                     </div>
 
 
