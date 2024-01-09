@@ -3,6 +3,7 @@ package com.example.projet_sem.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Entity
@@ -15,7 +16,7 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty(message = "Cin is required")
+    @Size(min = 8, max = 8, message = "CIN must be 8 digits")
     private String cin;
 
     @NotEmpty(message = "Name is required")

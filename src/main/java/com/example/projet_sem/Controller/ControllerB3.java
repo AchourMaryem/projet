@@ -73,7 +73,7 @@ public class ControllerB3 {
     public String saveB3(@Valid B3 b3, BindingResult bindingResult ,Model m,
                          @RequestParam ("image") MultipartFile mf) throws IOException {
         if (bindingResult.hasErrors()){
-            return "redirect:/papier3/";
+            return "/B3/Ad";
         }
 
       //  System.out.println(b3);

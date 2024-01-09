@@ -20,7 +20,7 @@ public class B3 extends Document {
     @NotEmpty(message = "Father name is required")
     private String nompere;
 
-    @NotEmpty(message = "Remarque  date is required")
+    @NotEmpty(message = "Remarque is required")
 
     private String Remarque;
 

@@ -5,6 +5,7 @@ import com.example.projet_sem.Entity.WeddingCertificate;
 import com.example.projet_sem.service.ServiceDocument;
 import com.example.projet_sem.service.ServiceQrcode;
 import com.example.projet_sem.service.ServiceWeddingCertificate;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,8 +39,10 @@ public class ControllerWeddingCertificate {
     }
 
     @PostMapping("/save")
-    public String saveWed(@ModelAttribute WeddingCertificate weddingCertificate, Model m){
-
+    public String saveWed(@Valid WeddingCertificate weddingCertificate, BindingResult bindingResult, Model m){
+        if (bindingResult.hasErrors()){
+            return "/WeddingCertificate/Ad";
+        }
         serviceWeddingCertificate.saveWed(weddingCertificate);
         qrservice.generateQrcode(weddingCertificate);
         return "redirect:/wedding/";

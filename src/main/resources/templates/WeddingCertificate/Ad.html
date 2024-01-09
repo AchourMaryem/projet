@@ -19,64 +19,93 @@
                     <div class="form-group">
                         <label for="cin">CIN</label>
                         <input type="text" name="cin" class="form-control" id="cin" th:value="${weddingCertificate?.cin}">
+                        <span class="text-danger" th:errors="${weddingCertificate.cin}"></span>
+
                     </div>
                     <div class="form-group">
                         <label for="dateCin">Date CIN</label>
                         <input type="date" name="dateCin" class="form-control" id="dateCin" th:value="${weddingCertificate?.dateCin}">
+                        <span class="text-danger" th:errors="${weddingCertificate.dateCin}"></span>
+
                     </div>
 
                     <div class="form-group">
                         <label for="nom">Nom</label>
                         <input type="text" name="nom" class="form-control" id="nom" th:value="${weddingCertificate?.nom}">
+                        <span class="text-danger" th:errors="${weddingCertificate.nom}"></span>
+
                     </div>
 
                     <div class="form-group">
                         <label for="prenom">Prenom</label>
                         <input type="text" name="prenom" class="form-control" id="prenom" th:value="${weddingCertificate?.prenom}">
+                        <span class="text-danger" th:errors="${weddingCertificate.prenom}"></span>
+
                     </div>
 
                     <div class="form-group">
                         <label for="dob">Date of birth</label>
                         <input type="date" name="dob" class="form-control" id="dob" th:value="${weddingCertificate?.dob}">
+                        <span class="text-danger" th:errors="${weddingCertificate.dob}"></span>
+
                     </div>
                     <div class="form-group">
                         <label for="nommere">Nom Mere</label>
                         <input type="text" name="nommere" class="form-control" id="nommere" th:value="${weddingCertificate?.nommere}">
+                        <span class="text-danger" th:errors="${weddingCertificate.nommere}"></span>
+
                     </div>
 
                     <div class="form-group">
                         <label for="nompere">Nom Pere</label>
                         <input type="text" name="nompere" class="form-control" id="nompere" th:value="${weddingCertificate?.nompere}">
+                        <span class="text-danger" th:errors="${weddingCertificate.nompere}"></span>
+
                     </div>
 
                     <div class="form-group">
                         <label for="nomcouple">Nom Couple</label>
                         <input type="text" name="nomcouple" class="form-control" id="nomcouple" th:value="${weddingCertificate?.nomcouple}">
+                        <span class="text-danger" th:errors="${weddingCertificate.nomcouple}"></span>
+
                     </div>
 
                     <div class="form-group">
                         <label for="prenomcouple">Prenom Couple</label>
                         <input type="text" name="prenomcouple" class="form-control" id="prenomcouple" th:value="${weddingCertificate?.prenomcouple}">
+                        <span class="text-danger" th:errors="${weddingCertificate.prenomcouple}"></span>
+
                     </div>
 
                     <div class="form-group">
                         <label for="sexe">Sexe</label>
                         <select name="sexe" class="form-control" id="sexe" th:value="${weddingCertificate?.sexe}">
+                            <option value="" disabled selected>Select sex</option>
                             <option value="Male">Homme</option>
                             <option value="Female">Femme</option>
                         </select>
+                        <span class="text-danger" th:if="${#fields.hasErrors('weddingCertificate.sexe')}" th:errors="${weddingCertificate?.sexe}"></span>
                     </div>
+
                     <div class="form-group">
                         <label for="lieu">Lieu</label>
                         <select name="lieu" class="form-control" id="lieu" th:value="${weddingCertificate?.lieu}">
-                            <option value="Tunis">Tunis</option>
-                            <option value="Sousse">Sousse</option>
+                            <option value="Tunis" th:selected="${weddingCertificate?.lieu == 'Tunis' }">Tunis</option>
+                            <option value="Sousse" th:selected="${weddingCertificate?.lieu == 'Sousse'}" >Sousse</option>
+                            <option value="Kairouan" th:selected="${weddingCertificate?.lieu == 'Kairouan'}" >Kairouan</option>
+                            <option value="Sfax" th:selected="${weddingCertificate?.lieu =='Sfax'}" >Sfax</option>
+                            <option value="Monastir" th:selected="${weddingCertificate.lieu =='Monastir'}" >Monastir</option>
+                            <option value="Beja" th:selected="${weddingCertificate.lieu =='Beja'}" >Beja</option>
+                            <option value="Gabes" th:selected="${weddingCertificate.lieu =='Gabes'}" >Gabes</option>
+                            <option value="Gafssa" th:selected="${weddingCertificate.lieu =='Gafssa'}" >Gafssa</option>
+                            <option value="Mahdia" th:selected="${weddingCertificate.lieu =='Mahdia'}" >Mahdia</option>
+                            <option value="Gasserine" th:selected="${weddingCertificate.lieu =='Gasserine'}" >Gasserine</option>
+                            <option value="Nabeul" th:selected="${weddingCertificate.lieu =='Nabeul'}" >Nabeul</option>
+                            <option value="Tataouine" th:selected="${weddingCertificate.lieu =='Tataouine'}" >Tataouine</option>
                         </select>
+                        <span class="text-danger" th:errors="${weddingCertificate.lieu}"></span>
+
                     </div>
-
-
-
-
 
                     <br>
                     <input type="hidden" name="id" th:value="${weddingCertificate.id}">
