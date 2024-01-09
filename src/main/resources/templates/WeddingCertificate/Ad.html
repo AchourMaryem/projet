@@ -81,11 +81,12 @@
                         <label for="sexe">Sexe</label>
                         <select name="sexe" class="form-control" id="sexe" th:value="${weddingCertificate?.sexe}">
                             <option value="" disabled selected>Select sex</option>
-                            <option value="Male">Homme</option>
-                            <option value="Female">Femme</option>
+                            <option value="Male" th:selected="${weddingCertificate?.sexe == 'Male'}">Homme</option>
+                            <option value="Female" th:selected="${weddingCertificate?.sexe == 'Female'}">Femme</option> <!-- Ajout de la guillemet manquante -->
                         </select>
                         <span class="text-danger" th:if="${#fields.hasErrors('weddingCertificate.sexe')}" th:errors="${weddingCertificate?.sexe}"></span>
                     </div>
+
 
                     <div class="form-group">
                         <label for="lieu">Lieu</label>
